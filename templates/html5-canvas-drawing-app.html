@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML5 Create HTML5 Canvas JavaScript Drawing App Example</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <!--[if IE]><script type="text/javascript" src="js/excanvas.js"></script><![endif]-->
+    <script type="text/javascript" src="js/html5-canvas-drawing-app.js"></script>
+  </head>
+  <body>
+    <div id="canvasDiv"></div>
+    <button>进行验证</button><br>
+    <a id="a1"></a><br>
+    <a>PS:目前只支持个位数验证，请使用默认的笔刷大小，数字居中</a>
+    <script type="text/javascript"> $(document).ready(function() {
+        prepareCanvas();
+        let btn = document.getElementsByTagName('button')[0];
+        btn.onclick= function() {
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.open('POST', '/upload_img', true);
+            httpRequest.setRequestHeader("Content-type","application/json");
+            var obj = { img_data: canvas.toDataURL('image/png')};
+            httpRequest.send(JSON.stringify(obj));//发送请求 将json写入send中
+            /**
+             * 获取数据后的处理程序
+             */
+            httpRequest.onreadystatechange = function () {//请求后的回调接口，可将请求成功后要执行的程序写在其中
+                if (httpRequest.status === 200) {//验证请求是否发送成功
+                    var json = httpRequest.responseText;//获取到服务端返回的数据
+                    document.getElementById('a1').innerHTML = '<a class="a1">验证结果：' + json +'</a>';
+                    console.log(json);
+                }
+            };
+        }
+});</script>
+  </body>
+</html>

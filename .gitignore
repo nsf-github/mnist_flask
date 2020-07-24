@@ -1,0 +1,7 @@
+.idea/
+model/
+venv/
+*.pyc
+*.out
+*.log
+*test.*
