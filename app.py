@@ -1,11 +1,12 @@
 import base64
 import io
+import os
 
 from flask import Flask, render_template, request
 
 from tools import image_prepare
 
-app = Flask(__name__, static_url_path='', root_path='/home/nsf/Desktop/workspace/mnist_flask')
+app = Flask(__name__, static_url_path='', root_path=os.path.dirname(os.path.abspath(__file__)))
 
 
 @app.route('/')
