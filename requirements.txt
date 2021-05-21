@@ -2,4 +2,4 @@ Flask==1.1.2
 numpy==1.19.0
 requests==2.24.0
 six==1.15.0
-tensorflow==2.2.0
+tensorflow==2.5.0
